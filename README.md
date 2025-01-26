@@ -1,5 +1,16 @@
 # Autodeployment Chat System
 
+## Acknowledgements
+- [ChatGPT](https://chatgpt.com/)
+- [OpenAI Platform](https://platform.openai.com/docs/overview)
+- [AWS Documentation](https://docs.aws.amazon.com/)
+- [Terraform Documentation](https://www.terraform.io/docs/index.html)
+- [Stack Overflow](https://stackoverflow.com/)
+
+There is extensive use of AI assistance in this project, including code generation with GitHub Copilot and
+language generation with ChatGPT. The project is a proof of concept and may require further development to
+be fully functional.
+
 ## Overview
 The **Autodeployment Chat System** automates the deployment of applications based on natural language input and a code repository. Designed for users with little to no DevOps experience, the system streamlines the provisioning and deployment process, requiring minimal intervention.
 
@@ -29,14 +40,3 @@ The **Autodeployment Chat System** automates the deployment of applications base
 - Enhance cloud provisioning capabilities.
 - Add support for additional cloud providers.
 - Implement a user-friendly interface.
-
-## Acknowledgements
-- [ChatGPT](https://chatgpt.com/)
-- [OpenAI Platform](https://platform.openai.com/docs/overview)
-- [AWS Documentation](https://docs.aws.amazon.com/)
-- [Terraform Documentation](https://www.terraform.io/docs/index.html)
-- [Stack Overflow](https://stackoverflow.com/)
-
-There is extensive use of AI assistance in this project, including code generation with GitHub Copilot and
-language generation with ChatGPT. The project is a proof of concept and may require further development to
-be fully functional.
