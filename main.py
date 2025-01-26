@@ -6,7 +6,7 @@ import requests
 import zipfile
 
 # Set OpenAI API key
-openai.api_key = "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"
+openai.api_key = "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"
 
 
 def welcome():
