@@ -11,10 +11,10 @@ import os
 import json
 import subprocess
 from openai import OpenAI
-
-client = OpenAI(api_key="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")
 import requests
 import zipfile
+
+client = OpenAI(api_key="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")
 
 
 # Set OpenAI API key
