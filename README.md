@@ -8,8 +8,8 @@
 - [Stack Overflow](https://stackoverflow.com/)
 
 There is extensive use of AI assistance in this project, including code generation with GitHub Copilot and
-language generation with ChatGPT. The project is a proof of concept and may require further development to
-be fully functional.
+ChatGPT, documentation wording with ChatGPT. The project is a proof of concept and may require further
+development to be fully functional.
 
 ## Overview
 The **Autodeployment Chat System** automates the deployment of applications based on natural language input and a code repository. Designed for users with little to no DevOps experience, the system streamlines the provisioning and deployment process, requiring minimal intervention.
