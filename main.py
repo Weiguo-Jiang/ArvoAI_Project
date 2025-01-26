@@ -1,8 +1,6 @@
 # ======================================================================================
 # Acknowledgment:
-# This code was enhanced with the assistance of OpenAI's ChatGPT,
-# a large language model developed by OpenAI. For further information, visit:
-# https://openai.com
+# This code was enhanced with the assistance of OpenAI's ChatGPT and GitHub's Copilot.
 #
 # Author: Weiguo Jiang
 # Date: Jan 25 2025
@@ -12,13 +10,14 @@
 import os
 import json
 import subprocess
-import openai
+from openai import OpenAI
+
+client = OpenAI(api_key="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")
 import requests
 import zipfile
 
 
 # Set OpenAI API key
-openai.api_key = "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"
 
 
 def welcome():
@@ -98,23 +97,21 @@ def user_input():
 def parse_requirements(input_text, repo_content):
     while True:
         try:
-            response = openai.ChatCompletion.create(
-                model="gpt-4",
-                messages=[
-                    {"role": "system", "content": "You are a DevOps assistant."},
-                    {"role": "user", "content": f"Analyze the following deployment requirement and repository content. "
-                                                    f"Provide the application type, dependencies, configurations, "
-                                                    f"and necessary VM configuration. Ensure the response is valid JSON and properly formatted. "
-                                                    f"Do not include extra comments or explanations, just return a JSON object.\n\n"
-                                                    f"Deployment Requirements:\n{input_text}\n\n"
-                                                    f"Repository Content:\n{repo_content}"}
-                ]
-            )
+            response = client.chat.completions.create(model="gpt-4",
+            messages=[
+                {"role": "system", "content": "You are a DevOps assistant."},
+                {"role": "user", "content": f"Analyze the following deployment requirement and repository content. "
+                                                f"Provide the application type, dependencies, configurations, "
+                                                f"and necessary VM configuration. Ensure the response is valid JSON and properly formatted. "
+                                                f"Do not include extra comments or explanations, just return a JSON object.\n\n"
+                                                f"Deployment Requirements:\n{input_text}\n\n"
+                                                f"Repository Content:\n{repo_content}"}
+            ])
             print()
             print("Analyzed deployment requirements:")
-            print(response['choices'][0]['message']['content'])
+            print(response.choices[0].message.content)
             print()
-            return json.loads(response['choices'][0]['message']['content'])
+            return json.loads(response.choices[0].message.content)
         except Exception as e:
             print(f"Error during OpenAI API call: {e}")
             print("Retrying...")

@@ -37,6 +37,5 @@ The **Autodeployment Chat System** automates the deployment of applications base
 ## TODOs:
 - Implement automated deployment.
 - Improve natural language processing.
-- Enhance cloud provisioning capabilities.
-- Add support for additional cloud providers.
 - Implement a user-friendly interface.
+- Test with a front-end application.
