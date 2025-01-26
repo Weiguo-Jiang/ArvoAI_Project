@@ -17,9 +17,9 @@ The **Autodeployment Chat System** automates the deployment of applications base
 ---
 
 ## Features
-- **Natural Language Processing**: Parses deployment requirements from user input.
-- **Code Repository Analysis**: Identifies application types, dependencies, and configurations from a given GitHub repository or zip file.
-- **Cloud Provisioning**: Utilizes Terraform to dynamically configure and provision VMs for deployment.
+- **Natural Language Processing**: Parses deployment requirements from user input. (quality of NLP may not be good)
+- **Code Repository Analysis**: Identifies application types, dependencies, and configurations from a given GitHub repository or zip file. (quality of NLP may not be good)
+- **Cloud Provisioning**: Utilizes Terraform to dynamically configure and provision VMs for deployment. (partially implemented)
 - **Automated Deployment**: Not able to implement it in time.
 - **Comprehensive Logs**: Provides detailed logs for each deployment step.
 
