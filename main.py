@@ -6,7 +6,8 @@ import requests
 import zipfile
 
 # Set OpenAI API key
-openai.api_key = "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"
+openai.api_key = "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"
+
 
 def welcome():
     print("""
@@ -31,6 +32,7 @@ def welcome():
     ================================================================================
     """)
     return
+
 
 def download_github_repo(repo_url, save_path="repo.zip"):
     try:
@@ -59,6 +61,7 @@ def download_github_repo(repo_url, save_path="repo.zip"):
     except:
         return None
 
+
 def user_input():
     deploy_requirements = input("Describe your deployment requirements: ")
     choice = input("Provide a GitHub link/zip file to your repository (1/2): ")
@@ -78,6 +81,7 @@ def user_input():
             print("Invalid path. Please try again.")
 
     return deploy_requirements, repo
+
 
 def parse_requirements(input_text, repo_content):
     while True:
@@ -115,7 +119,9 @@ def analyze_repository_with_requirements(path, deploy_requirements):
                 print(f"Could not read {file_name}: {e}")
 
     print("Analyzing the repository content with deployment requirements...")
+
     return parse_requirements(deploy_requirements, combined_content)
+
 
 def generate_terraform_config(gpt_response):
     vm_config = gpt_response.get("vm_configuration", {})
@@ -136,14 +142,31 @@ def generate_terraform_config(gpt_response):
 
     # Convert the provisioner commands to a properly formatted string for Terraform
     provisioner_commands_terraform = [f'"{cmd}"' for cmd in provisioner_commands]
+
     terraform_template = f"""
     provider "aws" {{
       region = "us-east-1"
     }}
 
+    data "aws_ami" "ubuntu" {{
+      most_recent = true
+      owners      = ["099720109477"] # Canonical's AWS Account ID
+      filter {{
+        name   = "name"
+        values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+      }}
+    }}
+
     resource "aws_instance" "app" {{
-      ami           = "{vm_config.get('image', 'ubuntu-20.04')}"
+      ami           = data.aws_ami.ubuntu.id
       instance_type = "{vm_config.get('type', 't2.micro')}"
+
+      connection {{
+        type        = "ssh"
+        user        = "ubuntu"
+        private_key = file("~/.ssh/id_rsa")
+        host        = self.public_ip
+      }}
 
       provisioner "remote-exec" {{
         inline = [{', '.join(provisioner_commands_terraform)}]
@@ -162,6 +185,7 @@ def deploy_with_terraform():
     except subprocess.CalledProcessError as e:
         print(f"Error during Terraform execution: {e}")
 
+
 def main():
     welcome()
     deploy_requirements, repo_path = user_input()
@@ -177,6 +201,7 @@ def main():
         deploy_with_terraform()
     else:
         print("Failed to retrieve deployment requirements from GPT.")
+
 
 if __name__ == "__main__":
     main()
