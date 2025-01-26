@@ -1,9 +1,21 @@
+# ======================================================================================
+# Acknowledgment:
+# This code was enhanced with the assistance of OpenAI's ChatGPT,
+# a large language model developed by OpenAI. For further information, visit:
+# https://openai.com
+#
+# Author: Weiguo Jiang
+# Date: Jan 25 2025
+# ======================================================================================
+
+
 import os
 import json
 import subprocess
 import openai
 import requests
 import zipfile
+
 
 # Set OpenAI API key
 openai.api_key = "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"
@@ -107,6 +119,7 @@ def parse_requirements(input_text, repo_content):
             print(f"Error during OpenAI API call: {e}")
             print("Retrying...")
 
+
 def analyze_repository_with_requirements(path, deploy_requirements):
     combined_content = ""
     with zipfile.ZipFile(path, 'r') as zip_ref:
@@ -188,6 +201,7 @@ def deploy_with_terraform():
 
 def main():
     welcome()
+
     deploy_requirements, repo_path = user_input()
 
     if repo_path.endswith(".zip"):
